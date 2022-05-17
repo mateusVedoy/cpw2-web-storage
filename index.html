@@ -13,7 +13,15 @@
     <label for="color">Cor do fundo: </label>
     <input type="color" id="color" onblur="changeColor()" />
     <br />
-    <label for="font">Fonte do título do fundo: </label>
+    <label for="font">Fonte do título do fundo:</label> 
+    <select name="FontFamily" id="font" onchange="changeFontFamily()">
+      <option value="Selecione" selected>Selecione</option>
+      <option value="Arial">Arial</option>
+      <option value="Monaco">Monaco</option>
+      <option value="Bradley Hand">Bradley Hand</option>
+      <option value="Algerian">Algerian</option>
+    </select>
+    
     <!--
       1 - Implemente um HTML select para trocar a fonte do texto Web Storage que, nesse projeto,
       está contido em um parágrafo. Algumas regras devem ser observadas:
@@ -24,6 +32,12 @@
     -->
 
     <script>
+      function changeFontFamily(){
+        let font = document.getElementById("font");
+        let text = document.getElementById("text");
+        text.style.fontFamily = `${font.value}`;
+        localStorage.setItem("font", font.value);
+      }
       /**
        * Troca a cor do fundo da página
        */
