@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CPW2: Web Storage</title>
-  </head>
-  <body onload="load()">
-    <p id="text">Web storage</p>
 
-    <label for="color">Cor do fundo: </label>
-    <input type="color" id="color" onblur="changeColor()" />
-    <br />
-    <label for="font">Fonte do título do fundo:</label> 
-    <select name="FontFamily" id="font" onchange="changeFontFamily()">
-      <option value="Selecione" selected>Selecione</option>
-      <option value="Arial">Arial</option>
-      <option value="Monaco">Monaco</option>
-      <option value="Bradley Hand">Bradley Hand</option>
-      <option value="Algerian">Algerian</option>
-    </select>
-    
-    <!--
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPW2: Web Storage</title>
+</head>
+
+<body onload="load()">
+  <p id="text">Web storage</p>
+
+  <label for="color">Cor do fundo: </label>
+  <input type="color" id="color" onblur="changeColor()" />
+  <br />
+  <label for="font">Fonte do título do fundo:</label>
+  <select name="FontFamily" id="font" onchange="changeFont()">
+    <option value="Selecione" selected>Selecione</option>
+    <option value="Arial">Arial</option>
+    <option value="Monaco">Monaco</option>
+    <option value="Bradley Hand">Bradley Hand</option>
+    <option value="Algerian">Algerian</option>
+  </select>
+
+  <!--
       1 - Implemente um HTML select para trocar a fonte do texto Web Storage que, nesse projeto,
       está contido em um parágrafo. Algumas regras devem ser observadas:
 
@@ -31,45 +33,45 @@
         * As opções do HTML select devem ser: Arial, Monaco e Bradley Hand
     -->
 
-    <script>
-      function changeFontFamily(){
-        let font = document.getElementById("font");
-        let text = document.getElementById("text");
-        text.style.fontFamily = `${font.value}`;
-        localStorage.setItem("font", font.value);
-      }
-      /**
-       * Troca a cor do fundo da página
-       */
-      function changeColor() {
-        let inputColor = document.getElementById("color");
-        document.body.style.backgroundColor = inputColor.value;
-        // Armazena no localStorage
-        localStorage.setItem("color", inputColor.value);
-      }
+  <script>
+    let font = document.getElementById("font");
+    let text = document.getElementById("text");
+    /**
+     * Troca a cor do fundo da página
+     */
+    function changeColor() {
+      let inputColor = document.getElementById("color");
+      document.body.style.backgroundColor = inputColor.value;
+      // Armazena no localStorage
+      localStorage.setItem("color", inputColor.value);
+    }
 
+    /**
+     * Troca a fonte do elemento onde o id é "text"
+     */
+    function changeFont() {
       /**
-       * Troca a fonte do elemento onde o id é "text"
+       * 2 - Implemente o corpo do método `changeFont`. Este método deve ser capaz
+       * de trocar a fonte do texto `Web Storage` e também salvar o valor
+       * escolhido no no local *localStorage* sempre que o usuário selecionar
+       * o tipo da fonte por meio do HTML select.
        */
-      function changeFont() {
-        /**
-         * 2 - Implemente o corpo do método `changeFont`. Este método deve ser capaz
-         * de trocar a fonte do texto `Web Storage` e também salvar o valor
-         * escolhido no no local *localStorage* sempre que o usuário selecionar
-         * o tipo da fonte por meio do HTML select.
-         */
-      }
+      text.style.fontFamily = `${font.value}`;
+      localStorage.setItem("font", font.value);
+    }
 
+    /**
+     * Inicializa o localStorage
+     */
+    function load() {
+      document.body.style.backgroundColor = localStorage.getItem("color");
+      text.style.fontFamily = localStorage.getItem("font");
       /**
-       * Inicializa o localStorage
+       * 3 - Altere o método `load` para recuperar o nome da fonte do *localStorage* e
+       * estilizar o texto `Web Storage`
        */
-      function load() {
-        document.body.style.backgroundColor = localStorage.getItem("color");
-        /**
-         * 3 - Altere o método `load` para recuperar o nome da fonte do *localStorage* e
-         * estilizar o texto `Web Storage`
-         */
-      }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>
